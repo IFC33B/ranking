@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import ifc33b.dwesc.ranking.dto.CandidatRequest;
 import ifc33b.dwesc.ranking.dto.CandidatResponse;
+import ifc33b.dwesc.ranking.exception.CandidatNotFoundException;
 import ifc33b.dwesc.ranking.model.Candidat;
 import ifc33b.dwesc.ranking.repository.CandidatRepository;
 
@@ -33,7 +34,7 @@ public class RankingService {
     // Votar a un candidato
     public CandidatResponse voteCandidat(Long id) {
         Candidat candidat = candidatRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Id no encontrada"));
+                .orElseThrow(() -> new CandidatNotFoundException(id));
         
         candidat.votar();
         return new CandidatResponse(candidat);
