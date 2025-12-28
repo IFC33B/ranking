@@ -30,7 +30,7 @@ public class Candidat {
     // Constructores
     Candidat() {}
 
-    Candidat(String nom) {
+    public Candidat(String nom) {
         this.setNom(nom);
         this.setVots(0);
     }

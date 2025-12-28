@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ifc33b.dwesc.ranking.dto.CandidatRequest;
 import ifc33b.dwesc.ranking.dto.CandidatResponse;
+import ifc33b.dwesc.ranking.model.Candidat;
 import ifc33b.dwesc.ranking.repository.CandidatRepository;
 
 @Service
@@ -19,5 +21,12 @@ public class RankingService {
         return candidatRepository.findAll().stream()
                 .map(CandidatResponse::new)
                 .collect(Collectors.toList());
+    }
+
+    // Añadir un candidato
+    public CandidatResponse createCandidat(CandidatRequest request) {
+        Candidat candidat = new Candidat(request.getNom());
+        candidatRepository.save(candidat);
+        return new CandidatResponse(candidat);
     }
 }

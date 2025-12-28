@@ -10,7 +10,7 @@ public class CandidatRequest {
     private String nom;
 
     // Constructores
-    CandidatRequest(String nom) {
+   public CandidatRequest(String nom) {
         this.setNom(nom);
     }
 }
