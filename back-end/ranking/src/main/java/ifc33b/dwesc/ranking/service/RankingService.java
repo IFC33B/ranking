@@ -29,4 +29,13 @@ public class RankingService {
         candidatRepository.save(candidat);
         return new CandidatResponse(candidat);
     }
+
+    // Votar a un candidato
+    public CandidatResponse voteCandidat(Long id) {
+        Candidat candidat = candidatRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Id no encontrada"));
+        
+        candidat.votar();
+        return new CandidatResponse(candidat);
+    }
 }

@@ -26,7 +26,7 @@ public class RankingController {
         return 0;
     }
     
-    @PutMapping("/{id}/votar") // Votar un candidato
+    @PutMapping("/{id}/votar") // Votar a un candidato
     public int voteCandidat(@PathVariable String id) {
         return 0;
     }

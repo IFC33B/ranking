@@ -34,4 +34,9 @@ public class Candidat {
         this.setNom(nom);
         this.setVots(0);
     }
+
+    // Metodos
+    public void votar() {
+        this.setVots(this.getVots() + 1);
+    }
 }
