@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ifc33b.dwesc.ranking.dto.CandidatRequest;
 import ifc33b.dwesc.ranking.dto.CandidatResponse;
 import ifc33b.dwesc.ranking.service.RankingService;
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +37,7 @@ public class RankingController {
     }
 
     @PostMapping() // Crea un nuevo candidato
-    public ResponseEntity<CandidatResponse> createCandidat(@RequestBody CandidatRequest request) {
+    public ResponseEntity<CandidatResponse> createCandidat(@Valid @RequestBody CandidatRequest request) {
         // Service
         CandidatResponse response = rankingService.createCandidat(request);
 
