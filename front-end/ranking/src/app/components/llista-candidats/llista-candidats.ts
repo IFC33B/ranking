@@ -48,6 +48,11 @@ export class LlistaCandidats implements OnInit {
     // Service
     this.candidatService.voteCandidat(id).subscribe({
       next: (data) => {
+        this.candidats.update((llista) => {
+          if (!llista) return llista;
+          
+          return llista?.map(c => c.id === data.id ? data : c)
+        })
         this.carregant.set(false);
       },
 
