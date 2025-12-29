@@ -29,7 +29,7 @@ export class CandidatService {
 
   // Votar a un candidat
   voteCandidat(id: number): Observable<Candidat> {
-    return this.http.put<Candidat>(`${this.apiURL}/${id}`, {})
+    return this.http.put<Candidat>(`${this.apiURL}/${id}/votar`, {})
       .pipe(
         catchError(this.handleError)
       )

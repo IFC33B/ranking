@@ -52,7 +52,7 @@
                 <h1 class="text-2xl text-yellow-400">{{ candidat.vots }}</h1>
             </div>
 
-            <button class="bg-gray-900 rounded py-1 px-6 mt-5 w-1/2 mx-auto hover:scale-[1.02] transition-transform cursor-pointer">Votar</button>
+            <button class="bg-gray-900 rounded py-1 px-6 mt-5 w-1/2 mx-auto hover:scale-[1.02] transition-transform cursor-pointer" (click)="votarCandidat(candidat.id)">Votar</button>
         </div>
 
         }

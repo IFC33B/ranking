@@ -14,7 +14,7 @@ export class LlistaCandidats implements OnInit {
   carregant = signal(false);
   error = signal<HttpErrorResponse | null>(null);
 
-  constructor(private candidatService: CandidatService) {}
+  constructor(private candidatService: CandidatService) { }
 
   ngOnInit(): void {
     this.carregarCandidats();
@@ -24,11 +24,30 @@ export class LlistaCandidats implements OnInit {
   carregarCandidats() {
     this.carregant.set(true);
     this.error.set(null);
-    
+
     // Service
     this.candidatService.getAllCandidats().subscribe({
       next: (data) => {
         this.candidats.set(data);
+        this.carregant.set(false);
+      },
+
+      error: (err) => {
+        this.error.set(err);
+        this.carregant.set(false);
+        console.log(err);
+      }
+    })
+  }
+
+  // Votar a un candidato
+  votarCandidat(id: number) {
+    this.carregant.set(true);
+    this.error.set(null);
+
+    // Service
+    this.candidatService.voteCandidat(id).subscribe({
+      next: (data) => {
         this.carregant.set(false);
       },
 
