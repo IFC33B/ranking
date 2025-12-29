@@ -28,7 +28,14 @@ export class LlistaCandidats implements OnInit {
     // Service
     this.candidatService.getAllCandidats().subscribe({
       next: (data) => {
-        this.candidats.set(data);
+        const llistaOrdenada = data
+        .sort((a, b) => b.vots - a.vots)
+        .map((c, index) => ({
+          ...c,
+          posicio: index + 1
+        }))
+
+        this.candidats.set(llistaOrdenada);
         this.carregant.set(false);
       },
 
@@ -51,7 +58,13 @@ export class LlistaCandidats implements OnInit {
         this.candidats.update((llista) => {
           if (!llista) return llista;
           
-          return llista?.map(c => c.id === data.id ? data : c)
+          return llista
+          .map(c => c.id === data.id ? data : c)
+          .sort((a, b) => b.vots - a.vots)
+          .map((c, index) => ({
+            ...c,
+            posicio: index + 1
+          }))
         })
         this.carregant.set(false);
       },
