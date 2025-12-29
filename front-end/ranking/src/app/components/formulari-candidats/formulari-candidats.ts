@@ -1,11 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, signal } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CandidatService } from '../../services/candidat.service';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-formulari-candidats',
-  imports: [],
+  imports: [RouterLink, FormsModule, ReactiveFormsModule],
   templateUrl: './formulari-candidats.html',
   styleUrl: './formulari-candidats.css',
 })
@@ -48,5 +49,10 @@ export class FormulariCandidats implements OnInit {
     } else {
       alert("Datos inválidos")
     }
+  }
+
+  // Recargar página
+  reload() {
+    window.location.reload()
   }
 }
