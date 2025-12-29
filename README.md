@@ -262,6 +262,6 @@ ranking/
         │       │   ├── candidat.model.ts
         │       │   └── candidat.model.spec.ts
         │       └── services/
-        │           ├── ranking.service.ts
-        │           └── ranking.service.spec.ts
+        │           ├── candidat.service.ts
+        │           └── candidat.service.spec.ts
 ```
