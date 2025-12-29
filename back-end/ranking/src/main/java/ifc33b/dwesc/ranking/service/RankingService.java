@@ -37,6 +37,8 @@ public class RankingService {
                 .orElseThrow(() -> new CandidatNotFoundException(id));
         
         candidat.votar();
-        return new CandidatResponse(candidat);
+
+        Candidat updatedCandidat = candidatRepository.save(candidat);
+        return new CandidatResponse(updatedCandidat);
     }
 }
