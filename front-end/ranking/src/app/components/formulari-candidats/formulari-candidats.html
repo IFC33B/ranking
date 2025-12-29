@@ -1,0 +1,55 @@
+<div class="py-10 bg-gray-900 h-full overflow-y-auto">
+    <h2 class="text-center mb-8 text-blue-400 font-extrabold text-4xl pb-10">
+        Formulario para añadir nuevos candidatos
+    </h2>
+
+    <!-- Indicador de carga -->
+    @if (carregant()) {
+    <section class="flex flex-col items-center py-8">
+        <div class="animate-spin rounded-full h-12 w-12 border-4 border-blue-400 border-t-blue-600 mb-3"></div>
+        <span class="text-gray-400 text-lg">Creando candidato...</span>
+    </section>
+    }
+
+    <!-- Mensaje de error -->
+    @if (error()) {
+    <section class="bg-red-900 text-red-400 text-center shadow-lg rounded-2xl p-6 mb-8 border border-red-700">
+        <p class="mb-3 font-semibold text-lg">{{ error()?.message }}</p>
+        <button
+            class="px-5 py-2 border border-red-400 text-red-400 rounded-full hover:bg-red-400 hover:text-black transition-all duration-300 shadow-md"
+            (click)="reload()">
+            Volver a intentar
+        </button>
+    </section>
+    }
+
+    <!-- Formulario -->
+    @if (!carregant() && !error()) {
+    <div class="max-w-lg mx-auto bg-gray-95 rounded-2xl py-8 px-8 shadow-xl border border-gray-800">
+
+        <h2 class="text-blue-400 text-xl font-bold mb-4">Agregar Candidatos</h2>
+
+        <form [formGroup]="candidatForm" (ngSubmit)="afegirCandidats()" class="space-y-6">
+
+            <!-- Nombre -->
+            <div>
+                <label class="text-blue-400">Nombre *</label>
+                <input type="text" formControlName="nom" class="bg-gray-800 text-blue-300 rounded px-3 py-2 w-full">
+
+                @if (candidatForm.get('nom')?.invalid && candidatForm.get('nom')?.touched) {
+                <p class="text-red-400 text-sm mt-1">
+                    @if (candidatForm.get('nom')?.errors?.['required']) { El nombre es obligatorio }
+                    @if (candidatForm.get('nom')?.errors?.['minlength']) { Mínimo 3 caracteres }
+                </p>
+                }
+            </div>
+
+            <button type="submit" [disabled]="candidatForm.invalid"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded mt-4">
+                Agregar
+            </button>
+        </form>
+    </div>
+
+    }
+</div>
