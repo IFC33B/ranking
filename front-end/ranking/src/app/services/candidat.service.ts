@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Candidat } from '../models';
+import { Candidat, CandidatRequest } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +14,14 @@ export class CandidatService {
   // Obtener todos los candidatos
   getAllCandidats(): Observable<Candidat[]> {
     return this.http.get<Candidat[]>(this.apiURL)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  // Crear un candidato
+  createCandidat(request: CandidatRequest): Observable<Candidat> {
+    return this.http.post<Candidat>(this.apiURL, request)
       .pipe(
         catchError(this.handleError)
       )
