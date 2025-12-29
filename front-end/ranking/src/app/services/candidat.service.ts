@@ -27,6 +27,14 @@ export class CandidatService {
       )
   }
 
+  // Votar a un candidat
+  voteCandidat(id: number): Observable<Candidat> {
+    return this.http.put<Candidat>(`${this.apiURL}/${id}`, {})
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
   // Gestión de errores
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Error desconocido';
