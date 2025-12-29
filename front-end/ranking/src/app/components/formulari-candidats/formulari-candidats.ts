@@ -6,7 +6,7 @@ import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-formulari-candidats',
-  imports: [RouterLink, FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './formulari-candidats.html',
   styleUrl: './formulari-candidats.css',
 })
